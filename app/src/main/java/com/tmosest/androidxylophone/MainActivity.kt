@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val noteClickListener = View.OnClickListener {
+            // TODO replace with a sound pool
             val mp = MediaPlayer.create(this@MainActivity, soundIdFromViewId(it.id))
+            mp.setOnCompletionListener {
+                it.release()
+            }
             mp.start()
         }
         xy_note1.setOnClickListener(noteClickListener)
